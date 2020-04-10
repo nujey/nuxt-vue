@@ -1,5 +1,7 @@
 <template>
-  <div>uid{{uid}}</div>
+  <div>
+    uid{{uid}}
+  </div>
 </template>
 
 <script>
@@ -10,6 +12,7 @@ export default {
     console.log(store.state, 'hhhhhhhh')
     return store.state.categories.some(category => category.id == params.uid)
   },
+  // middleware: {'stats'},
   data() {
     return {
       uid: 0
