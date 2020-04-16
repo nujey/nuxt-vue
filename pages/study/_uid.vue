@@ -8,13 +8,6 @@
 import axios from 'axios'
 
 export default {
-  asyncData({ params }, cb) {
-    console.log(params)
-    // axios.get(`https://my-api/posts/${params.id}`)
-    //   .then(res => {
-    //     cb(null, { title: res.data.title})
-    //   })
-  },
   validate({ params, store }) {
     // return /^\d+$/.test(params.uid)
     // return new Promise((resolve) => setTimeout(() => resolve()))
@@ -29,6 +22,12 @@ export default {
   },
   created() {
     this.uid = this.$route.params.uid
+    // const ip = await this.$axios.$get('http://xxx.com')
+  },
+  methods: {
+    async fetchSomething() {
+      const ip = await this.$axios.$get('http://xxx.com')
+    }
   }
 }
 </script>
