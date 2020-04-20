@@ -26,7 +26,8 @@ module.exports = {
   ** Global CSS
   */
   css: [
-    'iview/dist/styles/iview.css'
+    'iview/dist/styles/iview.css',
+    'vant/lib/index.css'
   ],
   /*
   ** Plugins to load before mounting the App

@@ -1,61 +1,62 @@
 <template>
-  <div class="container">
-    <div>
-      <!-- <logo /> -->
-      <h2 class="subtitle" id="container">
-        
-      </h2>
-    </div>
+  <div>
+    111
   </div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
+
 export default {
-  layout: 'blog',
   components: {
-    // Logo
+    // [Button.name]: Button
+  },
+  data() {
+    return {
+      
+    }
   },
   mounted() {
     this.$nextTick(() => {
       this.$nuxt.$loading.start()
       setTimeout(() => this.$nuxt.$loading.finish(), 1000)
     })
-    asyncLoadScript()
+    this.asyncLoadScript()
   },
   methods: {
     //加载高德地图资源
     asyncLoadScript() {
-      let map = new Promise((resolve, reject) => {
-        let script = document.createElement('script');
-        script.type = "text/javascript";
-        script.src = "https://webapi.amap.com/maps?v=1.4.15&key=31b63a747017bc1389496f3de493f833&callback=init";
-        window.init = function () {
-          resolve('加载')
-        }
-        document.head.appendChild(script);
-      });
-      let mapUI = new Promise((resolve, reject) => {
-        let script = document.createElement('script');
-        script.type = "text/javascript";
-        script.src = "//webapi.amap.com/ui/1.0/main-async.js";
-        document.head.appendChild(script);
-        script.onload = function () {
-          resolve('地图加载UI完成')
-        };
-      });
-      return Promise.all([map, mapUI]).then((result) => {
-        return result;
-      });
-    }
+      // let map = new Promise((resolve, reject) => {
+      //   let script = document.createElement('script');
+      //   script.type = "text/javascript";
+      //   script.src = "https://webapi.amap.com/maps?v=1.4.15&key=31b63a747017bc1389496f3de493f833&callback=init";
+      //   window.init = function () {
+      //     resolve('加载')
+      //   }
+      //   document.head.appendChild(script);
+      // });
+      // let mapUI = new Promise((resolve, reject) => {
+      //   let script = document.createElement('script');
+      //   script.type = "text/javascript";
+      //   script.src = "//webapi.amap.com/ui/1.0/main-async.js";
+      //   document.head.appendChild(script);
+      //   script.onload = function () {
+      //     resolve('地图加载UI完成')
+      //   };
+      // });
+      // return Promise.all([map, mapUI]).then((result) => {
+      //   this.initMap()
+      //   return result;
+      // });
+    },
   }
 }
 </script>
 
-<style>
-.container {
+<style scoped>
+#container {
   margin: 0 auto;
-  min-height: 100vh;
+  width: 100%; height: 100%;
+  min-height: 80vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -79,5 +80,16 @@ export default {
 }
 .links {
   padding-top: 15px;
+}
+.footer {
+  width: 100%; height: 20vh;
+  position: fixed;
+  bottom: 0; left: 0;
+  background: #fff;
+  z-index: 100;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 5px 10px;
 }
 </style>
