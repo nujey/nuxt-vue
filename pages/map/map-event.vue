@@ -4,39 +4,13 @@
     </div>
     <div class="footer">
       <div class="footer-item">
-        <h5>地图属性：</h5>
+        <h5>事件系统：</h5>
         <div class="flex-btns">
-          <van-button plain type="info" size="mini" @click="handleCreate">开启地图</van-button>
-          <van-button plain type="info" size="mini" @click="handleTransform">切换语言</van-button>
+          <van-button plain type="info" size="mini" @click="handleOpenDrag">开启拖拽</van-button>
+          <van-button plain type="info" size="mini" @click="handleOffDrag">关闭拖拽</van-button>
           <van-button plain type="info" size="mini" @click="handleDestroy">销毁地图</van-button>
           <van-button plain type="info" size="mini" @click="handleSetCity">重新定位</van-button>
           <van-button plain type="info" size="mini" @click="handlePanMove">地图平移</van-button>
-        </div>
-      </div>
-      <div class="footer-item">
-        <h5>覆盖涂层：</h5>
-        <div class="flex-btns">
-          <van-button plain type="info" size="mini" @click="handleAddMarker">添加标记</van-button>
-          <van-button plain type="info" size="mini" @click="handleRemoveMarker">删除标记</van-button>
-          <van-button plain type="info" size="mini" @click="handleAddCircle">添加范围</van-button>
-          <van-button plain type="info" size="mini" @click="handleRemoveCircle">删除范围</van-button>
-          <van-button plain type="info" size="mini" @click="handleAddLayer">添加图层</van-button>
-          <van-button plain type="info" size="mini" @click="handleRemoveLayer">删除图层</van-button>
-          <van-button plain type="info" size="mini" @click="handleScale">地图控件</van-button>
-        </div>
-      </div>
-      <div class="footer-item">
-        <h5>自定样式：</h5>
-        <div class="flex-btns">
-          <van-button plain type="info" size="mini">楼块样式</van-button>
-          <van-button plain type="info" size="mini">样式主题</van-button>
-        </div>
-      </div>
-      <div class="footer-item">
-        <h5>三位地图：</h5>
-        <div class="flex-btns">
-          <van-button plain type="info" size="mini">3D地图</van-button>
-          <van-button plain type="info" size="mini">三维模型</van-button>
         </div>
       </div>
     </div>
@@ -44,13 +18,11 @@
 </template>
 
 <script>
-import mapAttrs from './mixins/map_attrs.js'
-import mapMarkers from './mixins/map_markers'
-
+import mapEvents from './mixins/map_events'
 import { Button } from 'vant'
 let map = null
 export default {
-  mixins: [mapAttrs, mapMarkers],
+  mixins: [mapEvents],
   components: {
     [Button.name]: Button
   },
@@ -60,10 +32,6 @@ export default {
     }
   },
   mounted() {
-    this.$nextTick(() => {
-      this.$nuxt.$loading.start()
-      setTimeout(() => this.$nuxt.$loading.finish(), 1000)
-    })
     this.asyncLoadScript()
   },
   methods: {
@@ -94,16 +62,16 @@ export default {
     },
     initMap() {
       map = new AMap.Map("container", {
-        zoom: 17,
+        zoom: 15,
         center: [104.068275,30.606013],
         resizeEnable: true,
         // mapStyle: 'amap://styles/macaron',
-        pitch: 80,
-        rotation: -15,
-        viewMode:'3D',//开启3D视图,默认为关闭
-        buildingAnimation:true,//楼块出现是否带动画
-        expandZoomRange:true,
-        zooms:[3,20],
+        // pitch: 80,
+        // rotation: -15,
+        // viewMode:'3D',//开启3D视图,默认为关闭
+        // buildingAnimation:true,//楼块出现是否带动画
+        // expandZoomRange:true,
+        // zooms:[3,20],
       })
       this.map = map
       map.on('complete', function() {
@@ -114,15 +82,6 @@ export default {
           liteStyle: true
         }))
       })
-      map.addControl(new AMap.ControlBar({
-        showZoomBar:false,
-        showControlButton:true,
-        position:{
-          right:'10px',
-          top:'10px'
-        }
-      }))
-      this.handleClickGetPosition()
     }
   }
 }
