@@ -1,16 +1,25 @@
 <template>
   <div>
+    <h4>事件系统</h4>
     <div class="container" id="container">
     </div>
     <div class="footer">
+      <br style="margin-bottom: 5px;"/>
       <div class="footer-item">
-        <h5>事件系统：</h5>
+        <h5>地图事件：</h5>
         <div class="flex-btns">
-          <van-button plain type="info" size="mini" @click="handleOpenDrag">开启拖拽</van-button>
-          <van-button plain type="info" size="mini" @click="handleOffDrag">关闭拖拽</van-button>
-          <van-button plain type="info" size="mini" @click="handleDestroy">销毁地图</van-button>
-          <van-button plain type="info" size="mini" @click="handleSetCity">重新定位</van-button>
-          <van-button plain type="info" size="mini" @click="handlePanMove">地图平移</van-button>
+          <van-button plain type="info" size="mini" @click="handleOpenDrag">拖拽事件</van-button>
+          <van-button plain type="info" size="mini" @click="handleOpenCLick">点击事件</van-button>
+          <van-button plain type="info" size="mini" @click="handleMove">移动事件</van-button>
+          <van-button plain type="info" size="mini" @click="handleZoom">缩放事件</van-button>
+        </div>
+      </div>
+      <div class="footer-item">
+        <h5>覆盖事件：</h5>
+        <div class="flex-btns">
+          <van-button plain type="info" size="mini" @click="handleCoverEvent">点击覆盖</van-button>
+          <van-button plain type="info" size="mini" @click="handleOpenCLick">拖拽覆盖</van-button>
+          <van-button plain type="info" size="mini" @click="handleMove">信息窗体</van-button>
         </div>
       </div>
     </div>
@@ -74,9 +83,10 @@ export default {
         // zooms:[3,20],
       })
       this.map = map
-      map.on('complete', function() {
-        console.log('加载完成啦')
-      })
+      // map.on('complete', function() {
+      //   console.log('加载完成啦')
+      // })
+      this.handleComplete()
       AMap.plugin(['AMap.ToolBar'], function() {
         map.addControl(new AMap.ToolBar({
           liteStyle: true
