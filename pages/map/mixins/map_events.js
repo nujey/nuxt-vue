@@ -92,7 +92,7 @@ export default {
           fillColor: "#1791fc", //填充色
           fillOpacity: 0.35//填充透明度
       });
-      marker.on('click', (e) => {})
+      marker.on('click', (e) => { console.log('marker点击') })
       circle.on('click', (e) => {})
       polygon.on('click', (e) => {})
       this.map.setFitView()
