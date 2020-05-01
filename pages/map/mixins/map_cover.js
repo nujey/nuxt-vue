@@ -17,6 +17,9 @@ export default {
       })
       this.markers = [marker1, marker2, marker3]
       this.map.add(this.markers)
+    },
+    handleClearCover() {
+      this.map.clearMap()
     }
   }
 }

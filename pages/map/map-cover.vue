@@ -9,7 +9,7 @@
         <h5>地图事件：</h5>
         <div class="flex-btns">
           <van-button plain type="info" size="mini" @click="handleAddCover">添加覆盖</van-button>
-          <van-button plain type="info" size="mini" @click="handleRemoveCover">删除覆盖</van-button>
+          <van-button plain type="info" size="mini" @click="handleClearCover">清空覆盖</van-button>
           <van-button plain type="info" size="mini" @click="handleMove">移动事件</van-button>
           <van-button plain type="info" size="mini" @click="handleZoom">缩放事件</van-button>
         </div>
